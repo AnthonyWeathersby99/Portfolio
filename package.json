@@ -4,10 +4,11 @@
   "description": "Portfolio Website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next build && next export",
+    "deploy": "npm run export && touch out/.nojekyll && gh-pages -d out -t true"
   },
   "repository": {
     "type": "git",
@@ -29,11 +30,12 @@
     "react-dom": "latest",
     "typescript": "latest"
   },
-"devDependencies": {
+  "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "gh-pages": "^6.2.0",
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"
