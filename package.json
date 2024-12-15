@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build && mkdir -p out && touch out/.nojekyll && gh-pages -d out -t true"
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
