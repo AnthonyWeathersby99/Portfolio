@@ -16,10 +16,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build
         run: npm run build
@@ -30,7 +29,18 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: main            # Deploy to the main branch
           folder: out             # The folder with the static files
-          clean: true             # Remove old files not in the build
+          branch: main           # Deploy to the main branch
+          clean: false           # Don't remove existing files
+          clean-exclude: |
+            .git
+            .github
+            node_modules
+            src
+            package.json
+            package-lock.json
+            next.config.js
+            postcss.config.js
+            tailwind.config.js
+            tsconfig.json
           token: ${{ secrets.DEPLOY_TOKEN }}
