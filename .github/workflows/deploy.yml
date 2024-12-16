@@ -30,7 +30,7 @@ jobs:
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: out
-          branch: gh-pages
-          clean: true
+          branch: main            # Deploy to the main branch
+          folder: out             # The folder with the static files
+          clean: true             # Remove old files not in the build
           token: ${{ secrets.DEPLOY_TOKEN }}
