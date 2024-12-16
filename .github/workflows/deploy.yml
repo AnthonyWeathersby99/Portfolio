@@ -25,14 +25,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Disable Jekyll
+      - name: Prepare Build
         run: |
+          mkdir -p out
           touch out/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: out             # Back to using 'out' directory
+          folder: out             # Using 'out' directory
           branch: main           # Deploy to the main branch
           clean-exclude: |
             .git
