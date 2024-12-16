@@ -3,8 +3,10 @@ on:
   push:
     branches:
       - main
+
 permissions:
   contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -23,15 +25,15 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Create .nojekyll file
-        run: touch docs/.nojekyll
+      - name: Disable Jekyll
+        run: |
+          touch out/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: docs           # Using docs folder now
-          branch: main          # Deploy to the main branch
-          clean: false          # Don't remove existing files
+          folder: out             # Back to using 'out' directory
+          branch: main           # Deploy to the main branch
           clean-exclude: |
             .git
             .github
