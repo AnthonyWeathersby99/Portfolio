@@ -25,21 +25,21 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Prepare Build
+      - name: Create .nojekyll file
         run: |
-          mkdir -p out
           touch out/.nojekyll
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: out             # Using 'out' directory
-          branch: main           # Deploy to the main branch
+          folder: out
+          branch: main
           clean-exclude: |
             .git
             .github
             node_modules
             src
+            public
             package.json
             package-lock.json
             next.config.js

@@ -6,6 +6,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  trailingSlash: true,
+  // Remove distDir as it might conflict with the output setting
 };
 
 module.exports = nextConfig;
