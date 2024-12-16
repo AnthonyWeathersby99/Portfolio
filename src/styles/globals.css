@@ -1,0 +1,89 @@
+/* Import Tailwind */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --background-dark: #555555;
+  --header-color: #15B8A6;
+  --header-hover: #12a090;
+}
+
+/* Layout styles */
+.min-h-layout {
+  min-height: 100vh;
+  background-color: var(--background-dark);
+}
+
+/* Header styles */
+.header-base {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: white;
+  padding: 1rem;
+  z-index: 50;
+  background-color: var(--header-color);
+}
+
+.menu-button {
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+}
+
+.menu-button:focus {
+  outline: none;
+}
+
+/* Menu styles */
+.menu-container {
+  position: fixed;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  background-color: var(--background-dark);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  color: white;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateX(-100%) scale(0.95);
+  transition: all 0.5s ease;
+}
+
+.menu-item:hover {
+  background-color: rgba(75, 85, 99, 1);
+}
+
+.menu-item-label {
+  font-weight: 500;
+  text-align: left;
+  flex: 1;
+}
+
+.menu-item-description {
+  color: rgb(209, 213, 219);
+  text-align: right;
+}
+
+.close-menu-button {
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  color: var(--header-color);
+  opacity: 0;
+  transform: translateX(-100%) scale(0.95);
+  transition: all 0.5s ease;
+}
+
+.close-menu-button:hover {
+  color: var(--header-hover);
+}

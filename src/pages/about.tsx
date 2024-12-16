@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLayout from '../src/layouts/MainLayout';
+import MainLayout from '../layouts/MainLayout';
 
 const About: React.FC = () => {
   return (
