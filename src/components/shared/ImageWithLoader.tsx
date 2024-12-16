@@ -54,7 +54,7 @@ const ImageWithLoader: React.FC<ImageWithLoaderProps> = ({
         alt={alt}
         width={width}
         height={height}
-        onLoadingComplete={handleLoad}
+        onLoad={handleLoad}
         className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'} ${className}`}
         priority={priority}
         {...rest}
