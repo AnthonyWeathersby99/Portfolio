@@ -7,13 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-<<<<<<< Updated upstream
     "lint": "next lint",
     "export": "next export"
-=======
-    "lint": "next lint"
-    
->>>>>>> Stashed changes
   },
   "repository": {
     "type": "git",
