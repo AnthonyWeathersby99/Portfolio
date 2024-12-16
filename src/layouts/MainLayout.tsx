@@ -1,21 +1,11 @@
 import React from 'react';
-import Navigation from '../components/shared/Navigation';
-import Footer from '../components/shared/Footer';
 
-interface MainLayoutProps {
+type MainLayoutProps = {
   children: React.ReactNode;
-}
+};
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navigation />
-      <main className="flex-grow">
-        {children}
-      </main>
-      <Footer />
-    </div>
-  );
+const MainLayout = ({ children }: MainLayoutProps) => {
+  return <div className="min-h-screen bg-gray-700 text-white font-sans">{children}</div>;
 };
 
 export default MainLayout;

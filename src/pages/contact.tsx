@@ -1,14 +1,19 @@
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
+import React, { useState } from 'react';
+import Navigation from '@/components/shared/Navigation';
+import Hero from '@/components/features/Hero';
 
 const Contact: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
-    <MainLayout>
-      <div className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl font-bold mb-8">Contact Me</h1>
-        {/* Add your contact form here */}
-      </div>
-    </MainLayout>
+    <>
+      <Navigation isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <main className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+        <h1 className="text-4xl font-bold">Contact Information</h1>
+      </main>
+    </>
   );
 };
 
