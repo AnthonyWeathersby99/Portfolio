@@ -9,27 +9,38 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
 
+      # Step 3: Install dependencies using `npm ci`
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
+      # Step 4: Build the project
       - name: Build
         run: npm run build
 
+      # Step 5: Export static files
+      - name: Export Static Files
+        run: npm run export
+
+      # Step 6: Add .nojekyll file to prevent GitHub Pages from ignoring directories starting with underscores
       - name: Add .nojekyll file
         run: touch out/.nojekyll
 
+      # Step 7: Deploy to GitHub Pages (gh-pages branch)
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: out
-          branch: main
-          token: ${{ secrets.DEPLOY_TOKEN }}
+          branch: gh-pages
           clean: true
+          token: ${{ secrets.DEPLOY_TOKEN }}
