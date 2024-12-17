@@ -15,7 +15,7 @@ const Hero: React.FC = () => {
       <div className="md:w-1/2 flex justify-center">
         <div className="relative w-64 h-64 rounded-full overflow-hidden">
           <ImageWithLoader
-            src="/images/headshot.JPG"
+            src={process.env.NODE_ENV === 'production' ? '/Portfolio/images/headshot.JPG' : '/images/headshot.JPG'}
             alt="Anthony Weathersby"
             width={640}
             height={640}
@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
             priority
             style={{
               maxWidth: '100%',
-              height: 'auto',
+              height: 'auto'
             }}
           />
         </div>

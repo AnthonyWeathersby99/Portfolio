@@ -38,7 +38,6 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
         </div>
       </header>
 
-      {/* Dropdown Menu */}
       <div
         className={`fixed top-16 left-0 w-full shadow-lg transform transition-transform duration-300 z-40 bg-gray-800 ${
           isMenuOpen ? 'translate-y-0' : '-translate-y-full'
@@ -49,25 +48,23 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
             <Link
               key={index}
               href={item.href}
-              className={`flex items-center py-4 opacity-0 transform transition-all duration-500
-                ${index % 2 === 0 ? 'translate-x-[-100%]' : 'translate-x-[100%]'}
-                hover:bg-gray-700 hover:rounded-lg active:bg-gray-600 active:text-white`}
+              className="flex items-center py-4 opacity-0 transform transition-all duration-500 hover:bg-gray-700 hover:rounded-lg active:bg-gray-600 active:text-white"
               style={{
                 animation: isMenuOpen
                   ? `menuSlide 0.8s ease-out forwards ${index * 0.2}s`
                   : 'none',
               }}
             >
-              {/* Label with Gradient */}
-              <span
-                className="text-4xl leading-tight font-extrabold bg-gradient-to-r from-[#15B8A6] to-blue-600 text-transparent bg-clip-text text-left"
-              >
-                {item.label}
-              </span>
-              {/* Description clean alignment */}
-              <span className="text-lg text-gray-300 ml-4">
-                {item.description}
-              </span>
+              <div className="w-1/4 pl-4">
+                <span className="text-4xl leading-tight font-extrabold bg-gradient-to-r from-[#15B8A6] to-blue-600 text-transparent bg-clip-text">
+                  {item.label}
+                </span>
+              </div>
+              <div className="w-3/4 pl-4">
+                <span className="text-lg text-gray-300">
+                  {item.description}
+                </span>
+              </div>
             </Link>
           ))}
         </nav>
@@ -88,21 +85,6 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
           70% {
             opacity: 0.7;
             transform: translateX(10px) scale(1.05);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0) scale(1);
-          }
-        }
-
-        @keyframes menuSlideRight {
-          0% {
-            opacity: 0;
-            transform: translateX(100%) scale(0.95);
-          }
-          70% {
-            opacity: 0.7;
-            transform: translateX(-10px) scale(1.05);
           }
           100% {
             opacity: 1;
