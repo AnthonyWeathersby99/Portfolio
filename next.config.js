@@ -1,13 +1,17 @@
 /** @type {import('next').NextConfig} */
+const isGithubActions = process.env.GITHUB_ACTIONS || false
+
+let assetPrefix = isGithubActions ? '/Portfolio/' : ''
+let basePath = isGithubActions ? '/Portfolio' : ''
+
 const nextConfig = {
   output: 'export',
-  basePath: '/Portfolio',
-  assetPrefix: '/Portfolio/',
+  basePath: basePath,
+  assetPrefix: assetPrefix,
   images: {
     unoptimized: true,
   },
   trailingSlash: true,
-  // Remove distDir as it might conflict with the output setting
 };
 
 module.exports = nextConfig;
