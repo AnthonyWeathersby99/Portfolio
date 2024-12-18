@@ -43,25 +43,26 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
           isMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <nav className="p-8 space-y-4">
+        <nav className="p-4 md:p-8">
           {menuItems.map((item, index) => (
             <Link
               key={index}
               href={item.href}
-              className="flex items-center py-4 opacity-0 transform transition-all duration-500 hover:bg-gray-700 hover:rounded-lg active:bg-gray-600 active:text-white"
+              className="flex flex-col md:flex-row items-start md:items-center py-6 opacity-0 transform transition-all duration-500 hover:bg-gray-700 hover:rounded-lg active:bg-gray-600 active:text-white px-4"
               style={{
                 animation: isMenuOpen
                   ? `menuSlide 0.8s ease-out forwards ${index * 0.2}s`
                   : 'none',
               }}
+              onClick={toggleMenu}
             >
-              <div className="w-1/4 pl-4">
-                <span className="text-4xl leading-tight font-extrabold bg-gradient-to-r from-[#15B8A6] to-blue-600 text-transparent bg-clip-text">
+              <div className="w-full md:w-1/4 mb-2 md:mb-0">
+                <span className="text-2xl md:text-4xl leading-tight font-extrabold bg-gradient-to-r from-[#15B8A6] to-blue-600 text-transparent bg-clip-text">
                   {item.label}
                 </span>
               </div>
-              <div className="w-3/4 pl-4">
-                <span className="text-lg text-gray-300">
+              <div className="w-full md:w-3/4">
+                <span className="text-sm md:text-lg text-gray-300">
                   {item.description}
                 </span>
               </div>

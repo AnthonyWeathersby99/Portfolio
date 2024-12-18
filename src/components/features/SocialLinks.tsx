@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { Mail, Phone, Linkedin, Github, Check } from 'lucide-react';
 
 const ContactPage = () => {
@@ -16,14 +15,14 @@ const ContactPage = () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedField(field);
-      setTimeout(() => setCopiedField(null), 2000); // Reset after 2 seconds
+      setTimeout(() => setCopiedField(null), 2000);
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 pt-20">
+    <div className="min-h-screen w-full bg-gray-900 overflow-x-hidden">
       <div className="max-w-4xl mx-auto px-4 py-16">
         <h1 className="text-4xl font-bold text-white mb-12 text-center">Contact Information</h1>
         
@@ -34,86 +33,81 @@ const ContactPage = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Email Card */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Contact Cards */}
           <button 
             onClick={() => handleCopy(contactInfo.email, 'email')}
-            className="bg-gray-800 rounded-lg p-6 flex items-center space-x-4 hover:bg-gray-700 transition-colors group w-full text-left"
+            className="bg-gray-800 rounded-lg p-6 flex items-center space-x-4 hover:bg-gray-700 transition-colors group relative w-full text-left"
           >
             <div className="bg-teal-500 p-3 rounded-full group-hover:bg-teal-400 transition-colors">
               {copiedField === 'email' ? (
-                <Check className="w-8 h-8 text-white" />
+                <Check className="w-6 h-6 text-white" />
               ) : (
-                <Mail className="w-8 h-8 text-white" />
+                <Mail className="w-6 h-6 text-white" />
               )}
             </div>
-            <div className="flex-grow">
+            <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white mb-1">Email</h2>
-              <p className="text-gray-300">{contactInfo.email}</p>
+              <p className="text-gray-300 truncate">{contactInfo.email}</p>
             </div>
-            <span 
-              className={`text-sm text-white transition-opacity duration-200 ${
-                copiedField === 'email' ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
+            <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm text-white transition-opacity duration-200 ${
+              copiedField === 'email' ? 'opacity-100' : 'opacity-0'
+            }`}>
               Copied!
             </span>
           </button>
 
-          {/* Phone Card */}
           <button 
             onClick={() => handleCopy(contactInfo.phone, 'phone')}
-            className="bg-gray-800 rounded-lg p-6 flex items-center space-x-4 hover:bg-gray-700 transition-colors group w-full text-left"
+            className="bg-gray-800 rounded-lg p-6 flex items-center space-x-4 hover:bg-gray-700 transition-colors group relative w-full text-left"
           >
             <div className="bg-teal-500 p-3 rounded-full group-hover:bg-teal-400 transition-colors">
               {copiedField === 'phone' ? (
-                <Check className="w-8 h-8 text-white" />
+                <Check className="w-6 h-6 text-white" />
               ) : (
-                <Phone className="w-8 h-8 text-white" />
+                <Phone className="w-6 h-6 text-white" />
               )}
             </div>
-            <div className="flex-grow">
+            <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white mb-1">Phone</h2>
-              <p className="text-gray-300">{contactInfo.phone}</p>
+              <p className="text-gray-300 truncate">{contactInfo.phone}</p>
             </div>
-            <span 
-              className={`text-sm text-white transition-opacity duration-200 ${
-                copiedField === 'phone' ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
+            <span className={`absolute right-4 top-1/2 -translate-y-1/2 text-sm text-white transition-opacity duration-200 ${
+              copiedField === 'phone' ? 'opacity-100' : 'opacity-0'
+            }`}>
               Copied!
             </span>
           </button>
 
-          {/* LinkedIn Card */}
-          <Link 
+          <a 
             href={`https://${contactInfo.linkedin}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gray-800 rounded-lg p-6 flex items-center space-x-4 hover:bg-gray-700 transition-colors group"
           >
             <div className="bg-teal-500 p-3 rounded-full group-hover:bg-teal-400 transition-colors">
-              <Linkedin className="w-8 h-8 text-white" />
+              <Linkedin className="w-6 h-6 text-white" />
             </div>
-            <div>
+            <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white">LinkedIn</h2>
+              <p className="text-gray-300 truncate">View Profile</p>
             </div>
-          </Link>
+          </a>
 
-          {/* GitHub Card */}
-          <Link 
+          <a 
             href={`https://${contactInfo.github}`}
             target="_blank"
             rel="noopener noreferrer"
             className="bg-gray-800 rounded-lg p-6 flex items-center space-x-4 hover:bg-gray-700 transition-colors group"
           >
             <div className="bg-teal-500 p-3 rounded-full group-hover:bg-teal-400 transition-colors">
-              <Github className="w-8 h-8 text-white" />
+              <Github className="w-6 h-6 text-white" />
             </div>
-            <div>
+            <div className="flex-1 min-w-0">
               <h2 className="text-xl font-semibold text-white">GitHub</h2>
+              <p className="text-gray-300 truncate">View Profile</p>
             </div>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
