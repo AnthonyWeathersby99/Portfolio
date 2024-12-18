@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import Navigation from '@/components/shared/Navigation';
-import Hero from '@/components/features/Hero';
+import ContactPage from '@/components/features/SocialLinks';
 
 const Contact: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <>
+    <div className="min-h-screen relative">
       <Navigation isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-      <main className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-        <h1 className="text-4xl font-bold">Contact Information</h1>
-      </main>
-    </>
+      <ContactPage />
+    </div>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Navigation from '@/components/shared/Navigation';
 import EducationSection from '@/components/features/Education';
 import ResumeSection from '@/components/features/ResumeSection';
-import SkillsGrid from '@/components/features/SkillsGrid';
 import MainLayout from '@/layouts/MainLayout';
 
 const About: React.FC = () => {
@@ -29,19 +28,12 @@ const About: React.FC = () => {
             <div className="bg-gray-800 rounded-lg p-6 text-gray-300">
               <p className="mb-4">
                 As a Computer Science student at California State University Fullerton, I have developed
-                a strong foundation in software development and a passion for creating anything that comes to mind. Here you can see background,{' '}
+                a strong foundation in software development and a passion for creating anything that comes to mind. Here you can see my{' '}
                 <button 
                   onClick={() => scrollToSection('education')}
                   className="text-teal-400 hover:text-teal-300 underline font-medium transition-colors"
                 >
                   education
-                </button>
-                ,{' '}
-                <button 
-                  onClick={() => scrollToSection('skills')}
-                  className="text-teal-400 hover:text-teal-300 underline font-medium transition-colors"
-                >
-                  skills
                 </button>
                 ,{' '}
                 <button 
@@ -75,14 +67,6 @@ const About: React.FC = () => {
           <section className="mb-16" id="education">
             <h2 className="text-2xl font-bold text-white mb-6"></h2>
             <EducationSection />
-          </section>
-
-          {/* Skills Section */}
-          <section className="mb-16" id="skills">
-            <h2 className="text-2xl font-bold text-white mb-6">Technical Skills</h2>
-            <div className="bg-gray-800 rounded-lg p-6">
-              <SkillsGrid />
-            </div>
           </section>
 
           {/* Interests Section */}
