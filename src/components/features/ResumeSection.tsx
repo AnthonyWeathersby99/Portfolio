@@ -7,7 +7,7 @@ const ResumeSection = () => {
       {/* Download Link */}
       <div className="mb-8 text-center">
         <Link 
-          href="/resume.pdf" 
+          href="/docs/resume.pdf" 
           download="Anthony_Weathersby_Resume.pdf"
           className="inline-flex items-center px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-colors duration-200"
         >
@@ -31,7 +31,7 @@ const ResumeSection = () => {
       {/* Embedded PDF Viewer */}
       <div className="w-full aspect-[8.5/11] bg-white rounded-lg shadow-lg overflow-hidden">
         <iframe
-          src="/resume.pdf#view=FitH"
+          src="/docs/resume.pdf#view=FitH"
           className="w-full h-full"
           title="Anthony Weathersby Resume"
         />

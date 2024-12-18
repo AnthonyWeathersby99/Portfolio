@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navigation from '@/components/shared/Navigation';
 import Hero from '@/components/features/Hero';
+import ResumeSection from '@/components/features/ResumeSection';
 
 const HomePage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

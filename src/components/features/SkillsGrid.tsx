@@ -9,38 +9,38 @@ interface Skill {
 const SkillsGrid = () => {
   const skills: Skill[] = [
     // Languages
-    { name: 'C', category: 'Languages', proficiency: 90 },
-    { name: 'Python', category: 'Languages', proficiency: 85 },
+    { name: 'C#', category: 'Languages', proficiency: 90 },
+    { name: 'Python', category: 'Languages', proficiency: 90 },
     { name: 'C++', category: 'Languages', proficiency: 80 },
-    { name: 'JavaScript', category: 'Languages', proficiency: 85 },
+    { name: 'JavaScript', category: 'Languages', proficiency: 70 },
     { name: 'HTML/CSS', category: 'Languages', proficiency: 85 },
-    { name: 'R', category: 'Languages', proficiency: 75 },
+    { name: 'R', category: 'Languages', proficiency: 85 },
     
     // Frameworks & Libraries
     { name: 'Unity', category: 'Frameworks & Libraries', proficiency: 90 },
-    { name: 'OpenCV', category: 'Frameworks & Libraries', proficiency: 85 },
-    { name: 'YOLOv8', category: 'Frameworks & Libraries', proficiency: 80 },
-    { name: 'React', category: 'Frameworks & Libraries', proficiency: 85 },
-    { name: 'Flask', category: 'Frameworks & Libraries', proficiency: 75 },
+    { name: 'OpenCV', category: 'Frameworks & Libraries', proficiency: 60 },
+    { name: 'YOLOv8', category: 'Frameworks & Libraries', proficiency: 60 },
+    { name: 'React', category: 'Frameworks & Libraries', proficiency: 75 },
+    { name: 'Flask', category: 'Frameworks & Libraries', proficiency: 80 },
     
     // Cloud & DevOps
     { name: 'AWS Cognito', category: 'Cloud & DevOps', proficiency: 80 },
     { name: 'AWS DynamoDB', category: 'Cloud & DevOps', proficiency: 80 },
-    { name: 'AWS Lambda', category: 'Cloud & DevOps', proficiency: 75 },
-    { name: 'Google Cloud Platform', category: 'Cloud & DevOps', proficiency: 75 },
+    { name: 'AWS Lambda', category: 'Cloud & DevOps', proficiency: 85 },
+    { name: 'Google Cloud Platform', category: 'Cloud & DevOps', proficiency: 60 },
     
     // Developer Tools
     { name: 'Git', category: 'Developer Tools', proficiency: 90 },
-    { name: 'VS Code', category: 'Developer Tools', proficiency: 90 },
-    { name: 'Visual Studio', category: 'Developer Tools', proficiency: 85 },
+    { name: 'VS Code', category: 'Developer Tools', proficiency: 95 },
+    { name: 'Visual Studio', category: 'Developer Tools', proficiency: 95 },
     { name: 'Unity Editor', category: 'Developer Tools', proficiency: 85 },
     { name: 'Android Studio', category: 'Developer Tools', proficiency: 80 },
-    { name: 'R Studio', category: 'Developer Tools', proficiency: 75 },
+    { name: 'R Studio', category: 'Developer Tools', proficiency: 80 },
     
     // Machine Learning
-    { name: 'Computer Vision', category: 'Machine Learning', proficiency: 85 },
-    { name: 'Pose Estimation', category: 'Machine Learning', proficiency: 85 },
-    { name: 'Real-time Object Detection', category: 'Machine Learning', proficiency: 80 }
+    { name: 'Computer Vision', category: 'Machine Learning', proficiency: 70 },
+    { name: 'Pose Estimation', category: 'Machine Learning', proficiency: 70 },
+    { name: 'Real-time Object Detection', category: 'Machine Learning', proficiency: 70 }
   ];
 
   const categories = Array.from(new Set(skills.map(skill => skill.category)));
