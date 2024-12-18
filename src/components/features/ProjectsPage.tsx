@@ -1,4 +1,29 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink, Github } from 'lucide-react';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
 
 const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -63,114 +88,142 @@ const ProjectsPage = () => {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-white mb-8">My Projects</h1>
-      
-      <div className="space-y-8">
-        {projects.map((project) => (
-          <div 
-            key={project.id} 
-            className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:bg-gray-700/50 transition-colors duration-300"
-          >
-            {/* Header */}
-            <div className="p-6">
-              <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
-                <h2 className="text-2xl font-bold text-white">{project.title}</h2>
-                <div className="flex items-center gap-4">
-                  {project.unityProfile && (
-                    <a 
-                      href={project.unityProfile}
+    <motion.main 
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="pt-16 min-h-screen bg-gray-900"
+    >
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <motion.h1 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-white mb-8 text-center"
+        >
+          My Projects
+        </motion.h1>
+        
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          className="space-y-8"
+        >
+          {projects.map((project) => (
+            <motion.div 
+              key={project.id}
+              variants={itemVariants}
+              whileHover={{ scale: 1.01 }}
+              className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:bg-gray-700/50 transition-colors duration-300"
+            >
+              <div className="p-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-3">
+                  <motion.h2 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-2xl font-bold text-white"
+                  >
+                    {project.title}
+                  </motion.h2>
+                  <div className="flex items-center gap-4">
+                    {project.unityProfile && (
+                      <motion.a 
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        href={project.unityProfile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-teal-400 hover:text-teal-300 transition-colors"
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        <span className="hidden md:inline">Unity Profile</span>
+                      </motion.a>
+                    )}
+                    <motion.a 
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-teal-400 hover:text-teal-300 transition-colors"
                     >
-                      <svg 
-                        className="w-6 h-6" 
-                        viewBox="0 0 24 24" 
-                        fill="currentColor"
+                      <Github className="w-5 h-5" />
+                      <span className="hidden md:inline">View on GitHub</span>
+                    </motion.a>
+                  </div>
+                </div>
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-gray-300 text-lg mb-6"
+                >
+                  {project.description}
+                </motion.p>
+                
+                {(project.playable || project.videoDemo) && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mb-6"
+                  >
+                    <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+                      <iframe
+                        src={project.playable ? project.unityUrl : project.videoDemo}
+                        className="absolute top-0 left-0 w-full h-full rounded-lg"
+                        allow="autoplay; fullscreen"
+                        title={project.title}
+                      />
+                    </div>
+                  </motion.div>
+                )}
+                
+                <motion.div 
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  className="space-y-4"
+                >
+                  <h4 className="text-lg font-medium text-teal-400">Key Features:</h4>
+                  <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
+                    {project.details.map((detail, index) => (
+                      <motion.li 
+                        key={index}
+                        variants={itemVariants}
+                        className="text-base hover:text-teal-400 transition-colors duration-300"
                       >
-                        <path d="M24 12l-5.72 3.3-5.73-3.3 5.73-3.3zM6.45 12l5.73 3.3-5.73 3.3-5.73-3.3zM6.45 11.9l5.73-3.3 5.73 3.3-5.73 3.3zM6.45 19.4l5.73 3.3v-6.6zM18.18 4.6l-5.73-3.3v6.6z"/>
-                      </svg>
-                      <span className="hidden md:inline">Unity Profile</span>
-                    </a>
-                  )}
-                  <a 
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-teal-400 hover:text-teal-300 transition-colors"
-                  >
-                    <svg 
-                      className="w-6 h-6" 
-                      fill="currentColor" 
-                      viewBox="0 0 24 24"
+                        {detail}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </div>
+              
+              <motion.div 
+                variants={itemVariants}
+                className="px-6 py-4 bg-gray-800/50 border-t border-gray-700"
+              >
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      className="px-3 py-1 text-sm rounded-full bg-teal-500/20 text-teal-400 font-medium hover:bg-teal-500/30 transition-colors"
                     >
-                      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <span className="hidden md:inline">View on GitHub</span>
-                  </a>
-                </div>
-              </div>
-              <p className="text-gray-300 text-lg mb-6">{project.description}</p>
-              
-              {/* Unity Game Embed for Peggle */}
-              {project.playable && (
-                <div className="mb-6">
-                  <div className="relative w-full" style={{ paddingTop: '56.25%' }}> {/* 16:9 aspect ratio */}
-                    <iframe
-                      src={project.unityUrl}
-                      className="absolute top-0 left-0 w-full h-full rounded-lg"
-                      allow="autoplay; fullscreen"
-                      title={project.title}
-                    />
-                  </div>
-                </div>
-              )}
-
-              {/* Video Demo for MOFIT */}
-              {project.videoDemo && (
-                <div className="mb-6">
-                  <h4 className="text-lg font-medium text-teal-400 mb-4">Project Demo:</h4>
-                  <div className="relative w-full" style={{ paddingTop: '56.25%' }}> {/* 16:9 aspect ratio */}
-                    <iframe
-                      src={project.videoDemo}
-                      className="absolute top-0 left-0 w-full h-full rounded-lg"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      title={`${project.title} Demo`}
-                    />
-                  </div>
-                </div>
-              )}
-              
-              {/* Details */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-medium text-teal-400">Key Features:</h4>
-                <ul className="list-disc list-inside text-gray-300 space-y-2 ml-4">
-                  {project.details.map((detail, index) => (
-                    <li key={index} className="text-base">{detail}</li>
+                      {tech}
+                    </motion.span>
                   ))}
-                </ul>
-              </div>
-            </div>
-            
-            {/* Footer with Tech Tags */}
-            <div className="px-6 py-4 bg-gray-800/50 border-t border-gray-700">
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech, index) => (
-                  <span
-                    key={index}
-                    className="px-3 py-1 text-sm rounded-full bg-teal-500/20 text-teal-400 font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-    </div>
+    </motion.main>
   );
 };
 

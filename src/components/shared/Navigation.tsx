@@ -24,19 +24,36 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
   return (
     <>
       <header
-        className="fixed w-full top-0 text-white p-4 z-50"
-        style={{ backgroundColor: '#15B8A6' }}
-      >
-        <div className="flex items-center">
-          <button
-            onClick={toggleMenu}
-            className="text-2xl focus:outline-none mr-3"
-          >
-            {isMenuOpen ? '×' : '☰'}
-          </button>
-          <h1 className="text-xl font-bold">Menu</h1>
-        </div>
-      </header>
+  className="fixed w-full top-0 text-white p-4 z-50"
+  style={{
+    backgroundImage: 'linear-gradient(to right, #15B8A6, #2196F3, #6c17e3)',
+    backgroundSize: '300% 300%',
+    animation: 'gradientAnimation 8s ease infinite',
+  }}
+>
+  <div className="flex items-center">
+    <button
+      onClick={toggleMenu}
+      className="text-2xl focus:outline-none mr-3"
+    >
+      {isMenuOpen ? '×' : '☰'}
+    </button>
+    <h1 className="text-xl font-bold">Menu</h1>
+  </div>
+</header>
+<style jsx>{`
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+`}</style>
 
       <div
         className={`fixed top-16 left-0 w-full shadow-lg transform transition-transform duration-300 z-40 bg-gray-800 ${

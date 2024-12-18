@@ -1,19 +1,40 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import ImageWithLoader from '@/components/shared/ImageWithLoader';
 
 const Hero: React.FC = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-6xl w-full">
-      <div className="text-center md:text-left space-y-4 md:w-1/2">
-        <h1 className="text-4xl font-bold mb-4 text-white">Hello! My name is Anthony Weathersby.</h1>
-        <h2 className="text-2xl mb-4 text-white">Welcome to my portfolio!</h2>
-        <p className="text-lg text-gray-300">
+    <div className="flex flex-col md:flex-row items-center justify-center gap-20 max-w-7.5xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-center md:text-left space-y-4 md:w-1/2"
+      >
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          Hello! I'm{' '}
+          <span className="bg-gradient-to-r from-teal-400 to-blue-500 text-transparent bg-clip-text">
+            Anthony Weathersby
+          </span>
+        </h1>
+        <h2 className="text-2xl md:text-3xl text-gray-300 mb-4">Welcome to my portfolio!</h2>
+        <p className="text-lg text-gray-300 leading-relaxed">
           I am an upcoming graduate of California State University Fullerton
-          with a bachelors degree in computer science.
+          with a bachelor's degree in computer science. Passionate about creating
+          innovative solutions and bringing ideas to life through code.
         </p>
-      </div>
-      <div className="md:w-1/2 flex justify-center">
-        <div className="relative w-64 h-64 rounded-full overflow-hidden">
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        className="md:w-1/2 flex justify-center"
+      >
+        <motion.div 
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="relative w-64 h-64 rounded-full overflow-hidden ring-4 ring-teal-500/30"
+        >
           <ImageWithLoader
             src={process.env.NODE_ENV === 'production' ? '/Portfolio/images/headshot.JPG' : '/images/headshot.JPG'}
             alt="Anthony Weathersby"
@@ -26,8 +47,8 @@ const Hero: React.FC = () => {
               height: 'auto'
             }}
           />
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

@@ -1,4 +1,40 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const skillBarVariants = {
+  hidden: { width: 0 },
+  show: (custom: number) => ({
+    width: `${custom}%`,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+      delay: 0.3
+    }
+  })
+};
 
 const SkillsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -62,7 +98,12 @@ const SkillsPage = () => {
   };
 
   const renderSkillCard = (skill: any, type: string) => (
-    <div className="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1">
+    <motion.div 
+      variants={itemVariants}
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300 }}
+      className="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-all duration-300"
+    >
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-xl font-semibold text-white">{skill.name}</h3>
         <span className="text-teal-400 font-medium">
@@ -71,9 +112,13 @@ const SkillsPage = () => {
       </div>
       
       <div className="w-full bg-gray-600 rounded-full h-2 mb-4">
-        <div
-          className="bg-teal-500 rounded-full h-2 transition-all duration-1000 ease-out"
-          style={{ width: `${skill.proficiency}%` }}
+        <motion.div
+          className="bg-teal-500 rounded-full h-2"
+          variants={skillBarVariants}
+          custom={skill.proficiency}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
         />
       </div>
       
@@ -82,78 +127,108 @@ const SkillsPage = () => {
       ) : (
         <p className="text-gray-400">{skill.description}</p>
       )}
-    </div>
+    </motion.div>
   );
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <div className="flex justify-center mb-8 space-x-4">
+      <motion.div 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex justify-center mb-8 space-x-4"
+      >
         {Object.entries(categories).map(([key, value]) => (
-          <button
+          <motion.button
             key={key}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setSelectedCategory(key)}
-            className={`px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 ${
+            className={`px-6 py-2 rounded-full transition-all duration-300 ${
               selectedCategory === key
                 ? 'bg-teal-500 text-white'
                 : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
             {value}
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="space-y-12">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="space-y-12"
+      >
         {(selectedCategory === 'all' || selectedCategory === 'technical') && (
-          <div className="space-y-8 transition-opacity duration-500">
-            <h2 className="text-3xl font-bold text-white mb-6">Technical Skills</h2>
+          <motion.div 
+            variants={containerVariants}
+            className="space-y-8"
+          >
+            <motion.h2 
+              variants={itemVariants}
+              className="text-3xl font-bold text-white mb-6"
+            >
+              Technical Skills
+            </motion.h2>
             {Object.entries(skills.technical).map(([category, categorySkills]) => (
-              <div key={category}>
-                <h3 className="text-2xl font-semibold text-teal-400 mb-4">{category}</h3>
+              <motion.div 
+                key={category}
+                variants={containerVariants}
+              >
+                <motion.h3 
+                  variants={itemVariants}
+                  className="text-2xl font-semibold text-teal-400 mb-4"
+                >
+                  {category}
+                </motion.h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {categorySkills.map((skill, index) => (
-                    <div 
-                      key={index}
-                      className="transition-all duration-300 ease-in-out"
-                      style={{
-                        opacity: 1,
-                        transform: 'translateY(0)',
-                      }}
-                    >
+                    <motion.div key={index} variants={itemVariants}>
                       {renderSkillCard(skill, 'technical')}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {(selectedCategory === 'all' || selectedCategory === 'nonTechnical') && (
-          <div className="space-y-8 transition-opacity duration-500">
-            <h2 className="text-3xl font-bold text-white mb-6">Non-Technical Skills</h2>
+          <motion.div 
+            variants={containerVariants}
+            className="space-y-8"
+          >
+            <motion.h2 
+              variants={itemVariants}
+              className="text-3xl font-bold text-white mb-6"
+            >
+              Non-Technical Skills
+            </motion.h2>
             {Object.entries(skills.nonTechnical).map(([category, categorySkills]) => (
-              <div key={category}>
-                <h3 className="text-2xl font-semibold text-teal-400 mb-4">{category}</h3>
+              <motion.div 
+                key={category}
+                variants={containerVariants}
+              >
+                <motion.h3 
+                  variants={itemVariants}
+                  className="text-2xl font-semibold text-teal-400 mb-4"
+                >
+                  {category}
+                </motion.h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {categorySkills.map((skill, index) => (
-                    <div 
-                      key={index}
-                      className="transition-all duration-300 ease-in-out"
-                      style={{
-                        opacity: 1,
-                        transform: 'translateY(0)',
-                      }}
-                    >
+                    <motion.div key={index} variants={itemVariants}>
                       {renderSkillCard(skill, 'nonTechnical')}
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };
