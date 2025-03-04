@@ -61,7 +61,7 @@ const EducationSection = () => {
         { courseId: "CPSC 375", title: "Intro to Data Science & Big Data", grade: "B+", units: "3.0" },
         { courseId: "CPSC 490", title: "Undergraduate Seminar", grade: "A", units: "3.0" },
         
-        // Fall 2024 (In Progress)
+        // Fall 2024
         { courseId: "CPSC 349", title: "Web Front-End Engineering", grade: "A", units: "3.0" },
         { courseId: "CPSC 449", title: "Web Back-End Engineering", grade: "A", units: "3.0" },
         { courseId: "CPSC 471", title: "Computer Communications", grade: "B", units: "3.0" },
