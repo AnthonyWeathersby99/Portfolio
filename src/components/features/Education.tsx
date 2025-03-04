@@ -26,8 +26,8 @@ const EducationSection = () => {
   const schools: School[] = [
     {
       name: "California State University Fullerton",
-      years: "2022 - 2024",
-      gpa: "3.49",
+      years: "2022 - 2025",
+      gpa: "3.51",
       degree: "Bachelor of Science in Computer Science",
       courses: [
         // Fall 2022
@@ -62,10 +62,10 @@ const EducationSection = () => {
         { courseId: "CPSC 490", title: "Undergraduate Seminar", grade: "A", units: "3.0" },
         
         // Fall 2024 (In Progress)
-        { courseId: "CPSC 349", title: "Web Front-End Engineering", grade: "IP", units: "3.0" },
-        { courseId: "CPSC 449", title: "Web Back-End Engineering", grade: "IP", units: "3.0" },
-        { courseId: "CPSC 471", title: "Computer Communications", grade: "IP", units: "3.0" },
-        { courseId: "CPSC 491", title: "Senior Capstone Project", grade: "IP", units: "3.0" }
+        { courseId: "CPSC 349", title: "Web Front-End Engineering", grade: "A", units: "3.0" },
+        { courseId: "CPSC 449", title: "Web Back-End Engineering", grade: "A", units: "3.0" },
+        { courseId: "CPSC 471", title: "Computer Communications", grade: "B", units: "3.0" },
+        { courseId: "CPSC 491", title: "Senior Capstone Project", grade: "A", units: "3.0" }
       ]
     },
     {
