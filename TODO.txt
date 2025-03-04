@@ -1,2 +1,0 @@
-fix resume on about page
-dropdown menu fixed on mobile (vertical)
