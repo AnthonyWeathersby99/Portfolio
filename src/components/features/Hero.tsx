@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
         </h1>
         <h2 className="text-2xl md:text-3xl text-gray-300 mb-4">Welcome to my portfolio!</h2>
         <p className="text-lg text-gray-300 leading-relaxed">
-          I am an upcoming graduate of California State University Fullerton
+          I am a recent graduate of California State University Fullerton
           with a bachelor's degree in computer science. Passionate about creating
           innovative solutions and bringing ideas to life through code.
         </p>
